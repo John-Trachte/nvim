@@ -54,18 +54,18 @@ call plug#begin("~/.vim/plugged")
 	Plug 'junegunn/goyo.vim'
 
 "Themes
-	"Plug 'arcticicestudio/nord-vim'
+	Plug 'arcticicestudio/nord-vim'
 	"Plug 'danihek/hellwal-vim'
-	Plug 'sainnhe/everforest'
+	"Plug 'sainnhe/everforest'
 call plug#end()
 
-colorscheme everforest
+colorscheme nord
 
 let mapleader = " "
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>q <cmd>wqa<cr>
 nnoremap <leader>t <cmd>Limelight!! 0.7<cr>
-nnoremap <leader>g <cmd>Goyo 98%x98%<cr>
+nnoremap <leader>g <cmd>Goyo 94%x98%<cr>
 nnoremap <leader>gg <cmd>Goyo!<cr>
 noremap <leader>p <cmd>TypstPreviewToggle<cr>
 nnoremap <leader>l :TeXpresso %
@@ -106,9 +106,11 @@ smap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '
 
 lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"})
 
+lua require("typst-preview").setup({open_cmd = 'qutebrowser %s'}) 
+
 "lua require('neoscroll').setup({mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>','<C-y>', '<C-e>', 'zt', 'zz', 'zb'},hide_cursor = true,stop_eof = true,respect_scrolloff = false,cursor_scrolls_alone = true,easing = 'linear',pre_hook = nil,post_hook = nil,performance_mode = false,ignored_events = {'WinScrolled', 'CursorMoved'},})
 
 autocmd VimEnter * Limelight!! 0.7
 
 let g:goyo_linenr = 1
-autocmd VimEnter * Goyo 98%x98%
+autocmd VimEnter * Goyo 94%x98%
