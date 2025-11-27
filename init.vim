@@ -26,6 +26,9 @@ filetype on
 filetype plugin on
 
 call plug#begin("~/.vim/plugged")
+"Cursor smearing - tbd if i like it or not
+	Plug 'sphamba/smear-cursor.nvim'
+
 "Vim surround
 	Plug 'tpope/vim-surround'
 
@@ -66,7 +69,6 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>q <cmd>wqa<cr>
 nnoremap <leader>t <cmd>Limelight!! 0.7<cr>
 nnoremap <leader>g <cmd>Goyo 94%x98%<cr>
-nnoremap <leader>gg <cmd>Goyo!<cr>
 noremap <leader>p <cmd>TypstPreviewToggle<cr>
 nnoremap <leader>l :TeXpresso %
 
@@ -108,7 +110,18 @@ lua require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/LuaSnip/"}
 
 lua require("typst-preview").setup({open_cmd = 'qutebrowser %s'}) 
 
-"lua require('neoscroll').setup({mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>','<C-y>', '<C-e>', 'zt', 'zz', 'zb'},hide_cursor = true,stop_eof = true,respect_scrolloff = false,cursor_scrolls_alone = true,easing = 'linear',pre_hook = nil,post_hook = nil,performance_mode = false,ignored_events = {'WinScrolled', 'CursorMoved'},})
+lua require("smear_cursor").enabled = true
+
+"this is mostly to increase visual queueing for big jumps. the faster preset
+"from the git repo looks pretty nice and does most of what i want, so i've
+"changed it a little here and i'll probably forget about it unless it really
+"annoys me for some reason.
+lua require("smear_cursor").setup({
+	\stiffness = 0.6,
+	\trailing_stiffness = 0.6,
+	\distance_stop_animating = 0.5
+	\})
+
 
 autocmd VimEnter * Limelight!! 0.7
 
