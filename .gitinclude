@@ -1,1 +1,4 @@
 init.vim
+lsp/clangd.lua
+LuaSnip/*.lua
+
